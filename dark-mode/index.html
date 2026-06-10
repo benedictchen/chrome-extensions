@@ -3,60 +3,120 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free Dark Mode for Any Website — bookmarklet, no install</title>
-<meta name="description" content="Turn any website dark, free, right in your browser. Drag the dark-mode bookmarklet — one click darkens the page. No sign-up, no extension required to try.">
-<link rel="canonical" href="https://benedictchen.github.io/chrome-extensions/dark-mode/">
-<meta property="og:title" content="Free Dark Mode for Any Website">
-<meta property="og:description" content="One-click dark mode for any page. Free bookmarklet, no install.">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Free Dark Mode for Any Website","applicationCategory":"BrowserApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
-</script>
+<title>Dark Mode — Dark Theme for Every Site</title>
+<meta name="description" content="It's midnight, the lights are off, and the page detonates pure white in your face. One toggle → any site goes dark, with brightness you control.">
+<link rel="canonical" href="https://chromewebstore.google.com/detail/oappcmdjndobijmhnegjgalgdnjghpcg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dark Mode — Dark Theme for Every Site">
+<meta property="og:description" content="It's midnight, the lights are off, and the page detonates pure white in your face. One toggle → any site goes dark, with brightness you control.">
+<meta property="og:image" content="cws-1.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dark Mode — Dark Theme for Every Site">
+<meta name="twitter:description" content="It's midnight, the lights are off, and the page detonates pure white in your face. One toggle → any site goes dark, with brightness you control.">
+<meta name="twitter:image" content="cws-1.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it work on every site?","acceptedAnswer":{"@type":"Answer","text":"It applies to any page you turn it on for, with brightness/contrast you can adjust per site."}},{"@type":"Question","name":"Do you collect my browsing?","acceptedAnswer":{"@type":"Answer","text":"No. It only applies a local CSS filter; your per-site choice is stored locally."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Dark Mode — Dark Theme for Every Site","applicationCategory":"BrowserApplication","operatingSystem":"Chrome","url":"https://chromewebstore.google.com/detail/oappcmdjndobijmhnegjgalgdnjghpcg","sameAs":"https://chromewebstore.google.com/detail/oappcmdjndobijmhnegjgalgdnjghpcg","description":"It's midnight, the lights are off, and the page detonates pure white in your face. One toggle → any site goes dark, with brightness you control.","offers":{"@type":"Offer","price":"9.67","priceCurrency":"USD"}}</script>
 <style>
- :root{--accent:#6d28d9}
- *{box-sizing:border-box}
- body{font:16px/1.5 -apple-system,system-ui,sans-serif;margin:0;color:#1a1a1a;background:#fafafa}
- .wrap{max-width:680px;margin:0 auto;padding:32px 20px}
- h1{font-size:28px;margin:0 0 8px}
- .sub{color:#555;margin:0 0 24px}
- .card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:20px;margin:16px 0}
- .bm{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:10px 16px;border-radius:8px;margin-top:6px;cursor:grab}
- .hint{color:#777;font-size:14px;margin-top:8px}
- .preview{margin-top:12px;border-radius:8px;overflow:hidden;border:1px solid #ddd}
- .preview .demo{padding:18px;background:#fff;color:#111;transition:filter .2s}
- .preview .demo.dark{filter:invert(1) hue-rotate(180deg)}
- button{font:inherit;font-weight:600;padding:8px 14px;border:1px solid var(--accent);background:#fff;color:var(--accent);border-radius:8px;cursor:pointer;margin-top:10px}
- .cta{display:block;text-align:center;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:14px;border-radius:10px;margin-top:8px}
- .why li{margin:4px 0}
- footer{color:#999;font-size:13px;text-align:center;margin-top:28px}
+  :root { --accent:#a855f7; --accent2:#6366f1; --glow:#6366f1;
+    --bg:#0b0b10; --surface:#15151d; --line:#262630; --text:#f4f4f6; --muted:#a0a0ad; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+  .wrap { max-width:880px; margin:0 auto; padding:0 22px; }
+  a { color:inherit; }
+  .cta { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg, #a855f7, #6366f1); color:#fff; font-weight:800;
+    font-size:18px; padding:15px 30px; border-radius:14px; text-decoration:none; box-shadow:0 10px 34px -8px var(--glow);
+    transition:transform .12s ease; }
+  .cta:hover { transform:translateY(-2px); }
+  .cta .free { font-size:13px; font-weight:600; opacity:.85; }
+  header { text-align:center; padding:72px 0 36px; }
+  .badge { display:inline-block; font-size:34px; width:74px; height:74px; line-height:74px; border-radius:20px;
+    background:var(--surface); border:1px solid var(--line); margin-bottom:22px; box-shadow:0 0 40px -16px var(--glow); }
+  h1 { font-size:clamp(28px,5vw,46px); line-height:1.12; letter-spacing:-.02em; margin-bottom:16px; }
+  h1 .hl { background:linear-gradient(135deg, #a855f7, #6366f1); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .sub { color:var(--muted); font-size:clamp(16px,2.4vw,20px); max-width:620px; margin:0 auto 30px; }
+  section { padding:40px 0; }
+  .card { background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:30px; }
+  h2 { font-size:clamp(22px,3.4vw,30px); letter-spacing:-.01em; margin-bottom:18px; }
+  .pain li { list-style:none; padding:12px 0 12px 34px; position:relative; color:#e7e7ee; border-bottom:1px solid var(--line); }
+  .pain li:last-child { border-bottom:0; }
+  .pain li:before { content:"😖"; position:absolute; left:0; top:11px; }
+  .benefits { list-style:none; display:grid; gap:12px; }
+  .benefits li { display:flex; gap:12px; align-items:flex-start; }
+  .chk { color:#fff; background:linear-gradient(135deg, #a855f7, #6366f1); min-width:24px; height:24px; border-radius:50%; display:inline-flex;
+    align-items:center; justify-content:center; font-size:13px; font-weight:800; }
+  .shots { display:flex; gap:16px; overflow-x:auto; padding:6px 0 14px; scroll-snap-type:x mandatory; }
+  .shot { width:300px; flex:0 0 auto; border-radius:14px; border:1px solid var(--line); scroll-snap-align:center; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; }
+  .card { display:block; text-decoration:none; color:inherit; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px; transition:transform .12s ease,border-color .12s ease; }
+  .card:hover { transform:translateY(-2px); border-color:var(--a,var(--accent)); }
+  .card .ic { font-size:24px; width:46px; height:46px; line-height:46px; text-align:center; border-radius:11px; background:linear-gradient(135deg,var(--a,var(--accent)),var(--b,var(--accent2))); margin-bottom:10px; }
+  .card .t { font-weight:700; font-size:15px; }
+  .demo { width:100%; max-width:680px; display:block; margin:0 auto; border-radius:16px; border:1px solid var(--line); box-shadow:0 24px 60px -20px var(--glow); background:#000; }
+  .price { text-align:center; }
+  .price .big { font-size:40px; font-weight:900; }
+  .price .note { color:var(--muted); font-size:15px; margin-top:6px; }
+  .faq { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin-bottom:12px; }
+  .faq summary { cursor:pointer; font-weight:700; }
+  .faq p { color:var(--muted); margin-top:10px; }
+  footer { text-align:center; padding:54px 0 70px; color:var(--muted); font-size:14px; }
+  .center { text-align:center; }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>🌙 Free Dark Mode for Any Website</h1>
-  <p class="sub">Darken any page instantly — easy on the eyes at night. No install, no sign-up — drag one bookmarklet.</p>
+<header><div class="wrap">
+  <div class="badge">🌙</div>
+  <h1>It's midnight, the lights are off, and the page detonates pure white in your face.</h1>
+  <p class="sub">You flinch, dim the screen, keep reading anyway — and your eyes ache by the time you close the laptop. Half the web still has no dark theme. Give every page one.</p>
+  <a class="cta" href="https://chromewebstore.google.com/detail/oappcmdjndobijmhnegjgalgdnjghpcg" rel="noopener">Add to Chrome <span class="free">— Free</span></a>
+</div></header>
 
-  <div class="card">
-    <a class="bm" href="javascript:(function(){var id='__bbdark';var s=document.getElementById(id);if(s){s.remove();return;}s=document.createElement('style');s.id=id;s.textContent='html{filter:invert(1) hue-rotate(180deg)!important;background:#fff!important}img,video,picture,canvas,[style*=background-image]{filter:invert(1) hue-rotate(180deg)!important}';document.documentElement.appendChild(s)})()" title="Drag me to your bookmarks bar">🌙 Dark Mode — drag to bookmarks</a>
-    <p class="hint">Drag the button to your bookmarks bar, then click it on any site to toggle dark mode on/off. (Resets when you navigate — the extension below makes it stick.)</p>
-    <div class="preview"><div class="demo" id="demo"><strong>Live preview.</strong> This box flips dark when you press the button — the same CSS-invert the bookmarklet runs.</div></div>
-    <button id="toggle">Toggle preview dark ↔ light</button>
+<section style="padding-top:8px"><div class="wrap">
+  <video class="demo" src="demo.mp4" autoplay muted loop playsinline poster="cws-1.png"></video>
+</div></section>
+
+<section><div class="wrap">
+  <h2>One toggle → any site goes dark, with brightness you control.</h2>
+  <ul class="benefits">
+        <li><span class="chk">✓</span>Apply a dark theme to any website instantly.</li>
+        <li><span class="chk">✓</span>Per-site on/off memory and adjustable brightness.</li>
+        <li><span class="chk">✓</span>Reads nothing on the page — it only applies a local CSS filter.</li>
+        <li><span class="chk">✓</span>No account, no card to start.</li>
+  </ul>
+</div></section>
+
+<section><div class="wrap">
+  <div class="shots">
+        <img class="shot" src="cws-1.png" alt="Dark Mode — Dark Theme for Every Site screenshot" loading="lazy">
+        <img class="shot" src="cws-2.png" alt="Dark Mode — Dark Theme for Every Site screenshot" loading="lazy">
+        <img class="shot" src="cws-3.png" alt="Dark Mode — Dark Theme for Every Site screenshot" loading="lazy">
+        <img class="shot" src="popup.png" alt="Dark Mode — Dark Theme for Every Site screenshot" loading="lazy">
   </div>
+</div></section>
 
-  <div class="card why">
-    <strong>Want dark mode that just stays on, everywhere?</strong>
-    <ul>
-      <li>✅ Auto-applies to every site the moment it loads — no clicking</li>
-      <li>✅ Per-site on/off + adjustable brightness</li>
-      <li>✅ Remembers your choice; no bookmarklet, no reset on navigation</li>
-    </ul>
-    <a class="cta" href="https://chromewebstore.google.com/detail/oappcmdjndobijmhnegjgalgdnjghpcg" target="_blank" rel="noopener">Get the Dark Mode extension →</a>
+<section><div class="wrap card price">
+  <div class="big">Your first 10 uses are on us</div>
+  <div class="note">No account, no card. Keep going for $9.67/mo — unlimited, cancel anytime.</div>
+  <p style="margin-top:22px"><a class="cta" href="https://chromewebstore.google.com/detail/oappcmdjndobijmhnegjgalgdnjghpcg" rel="noopener">Add to Chrome <span class="free">— Free</span></a></p>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Questions</h2>
+      <details class="faq"><summary>Does it work on every site?</summary><p>It applies to any page you turn it on for, with brightness/contrast you can adjust per site.</p></details>
+      <details class="faq"><summary>Do you collect my browsing?</summary><p>No. It only applies a local CSS filter; your per-site choice is stored locally.</p></details>
+</div></section>
+
+<section><div class="wrap">
+  <h2>More free tools from BenettiMedia</h2>
+  <div class="grid">
+    <a class="card" href="../screen-recorder/" style="--a:#ef4444;--b:#f43f5e"><div class="ic">⏺</div><div class="t">Snappy Screen Recorder</div></a>
+    <a class="card" href="../data-scraper/" style="--a:#059669;--b:#10b981"><div class="ic">🧲</div><div class="t">Super Scraper</div></a>
+    <a class="card" href="../volume-booster/" style="--a:#f59e0b;--b:#fb7185"><div class="ic">🔊</div><div class="t">Big Volume Booster</div></a>
+    <a class="card" href="../auto-refresh/" style="--a:#3b82f6;--b:#06b6d4"><div class="ic">🔄</div><div class="t">Auto Refresh Plus</div></a>
   </div>
+</div></section>
 
-  <footer>Free tool by BenettiMedia · runs entirely in your browser · no data leaves your device.</footer>
-</div>
-<script>
- var d=document.getElementById('demo'), b=document.getElementById('toggle');
- b.addEventListener('click',function(){d.classList.toggle('dark')});
-</script>
+<footer><div class="wrap">
+  Dark Mode — Dark Theme for Every Site · <a href="https://chromewebstore.google.com/detail/oappcmdjndobijmhnegjgalgdnjghpcg" rel="noopener">Get it on the Chrome Web Store</a>
+</div></footer>
 </body>
 </html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Dark Mode for Any Website — bookmarklet, no install</title>
+<meta name="description" content="Turn any website dark, free, right in your browser. Drag the dark-mode bookmarklet — one click darkens the page. No sign-up, no extension required to try.">
+<link rel="canonical" href="https://benedictchen.github.io/chrome-extensions/free-dark-mode/">
+<meta property="og:title" content="Free Dark Mode for Any Website">
+<meta property="og:description" content="One-click dark mode for any page. Free bookmarklet, no install.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Free Dark Mode for Any Website","applicationCategory":"BrowserApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+ :root{--accent:#6d28d9}
+ *{box-sizing:border-box}
+ body{font:16px/1.5 -apple-system,system-ui,sans-serif;margin:0;color:#1a1a1a;background:#fafafa}
+ .wrap{max-width:680px;margin:0 auto;padding:32px 20px}
+ h1{font-size:28px;margin:0 0 8px}
+ .sub{color:#555;margin:0 0 24px}
+ .card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:20px;margin:16px 0}
+ .bm{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:10px 16px;border-radius:8px;margin-top:6px;cursor:grab}
+ .hint{color:#777;font-size:14px;margin-top:8px}
+ .preview{margin-top:12px;border-radius:8px;overflow:hidden;border:1px solid #ddd}
+ .preview .demo{padding:18px;background:#fff;color:#111;transition:filter .2s}
+ .preview .demo.dark{filter:invert(1) hue-rotate(180deg)}
+ button{font:inherit;font-weight:600;padding:8px 14px;border:1px solid var(--accent);background:#fff;color:var(--accent);border-radius:8px;cursor:pointer;margin-top:10px}
+ .cta{display:block;text-align:center;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:14px;border-radius:10px;margin-top:8px}
+ .why li{margin:4px 0}
+ footer{color:#999;font-size:13px;text-align:center;margin-top:28px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🌙 Free Dark Mode for Any Website</h1>
+  <p class="sub">Darken any page instantly — easy on the eyes at night. No install, no sign-up — drag one bookmarklet.</p>
+
+  <div class="card">
+    <a class="bm" href="javascript:(function(){var id='__bbdark';var s=document.getElementById(id);if(s){s.remove();return;}s=document.createElement('style');s.id=id;s.textContent='html{filter:invert(1) hue-rotate(180deg)!important;background:#fff!important}img,video,picture,canvas,[style*=background-image]{filter:invert(1) hue-rotate(180deg)!important}';document.documentElement.appendChild(s)})()" title="Drag me to your bookmarks bar">🌙 Dark Mode — drag to bookmarks</a>
+    <p class="hint">Drag the button to your bookmarks bar, then click it on any site to toggle dark mode on/off. (Resets when you navigate — the extension below makes it stick.)</p>
+    <div class="preview"><div class="demo" id="demo"><strong>Live preview.</strong> This box flips dark when you press the button — the same CSS-invert the bookmarklet runs.</div></div>
+    <button id="toggle">Toggle preview dark ↔ light</button>
+  </div>
+
+  <div class="card why">
+    <strong>Want dark mode that just stays on, everywhere?</strong>
+    <ul>
+      <li>✅ Auto-applies to every site the moment it loads — no clicking</li>
+      <li>✅ Per-site on/off + adjustable brightness</li>
+      <li>✅ Remembers your choice; no bookmarklet, no reset on navigation</li>
+    </ul>
+    <a class="cta" href="https://chromewebstore.google.com/detail/oappcmdjndobijmhnegjgalgdnjghpcg" target="_blank" rel="noopener">Get the Dark Mode extension →</a>
+  </div>
+
+  <footer>Free tool by BenettiMedia · runs entirely in your browser · no data leaves your device.</footer>
+</div>
+<script>
+ var d=document.getElementById('demo'), b=document.getElementById('toggle');
+ b.addEventListener('click',function(){d.classList.toggle('dark')});
+</script>
+</body>
+</html>
