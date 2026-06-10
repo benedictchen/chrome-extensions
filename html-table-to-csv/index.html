@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HTML Table to CSV — paste a table, get a CSV (no code, no sign-up)</title>
+<meta name="description" content="Paste an HTML table or its markup and download clean CSV instantly, or copy TSV straight into Google Sheets / Excel. Runs in your browser, nothing uploaded, no account.">
+<link rel="canonical" href="https://benedictchen.github.io/chrome-extensions/html-table-to-csv/">
+<meta property="og:title" content="HTML Table to CSV — free, in-browser">
+<meta property="og:description" content="Paste a table → download CSV or copy to Sheets. No code, no upload, no sign-up.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"HTML Table to CSV","applicationCategory":"BusinessApplication","operatingSystem":"Any (modern browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I convert an HTML table to CSV without code?","acceptedAnswer":{"@type":"Answer","text":"Copy the table (or its HTML), paste it into the box above, and click Download CSV. Everything runs in your browser — nothing is uploaded."}},{"@type":"Question","name":"Can I paste straight into Google Sheets or Excel?","acceptedAnswer":{"@type":"Answer","text":"Yes — click Copy as TSV, then paste into a sheet; columns land in separate cells automatically."}},{"@type":"Question","name":"How do I get a table off a live web page behind a login or pagination?","acceptedAnswer":{"@type":"Answer","text":"A web page cannot read another site. For tables on live pages, logged-in dashboards, or across pages, use the data-scraper Chrome extension."}}]}</script>
+<style>
+  :root { --accent:#0ea5a4; --bg:#0b0b10; --surface:#15151d; --line:#262630; --text:#f4f4f6; --muted:#a0a0ad; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+  .wrap { max-width:820px; margin:0 auto; padding:44px 22px 80px; }
+  h1 { font-size:30px; letter-spacing:-.02em; }
+  p.sub { color:var(--muted); margin:10px 0 22px; }
+  textarea { width:100%; min-height:170px; background:var(--surface); color:var(--text); border:1px solid var(--line); border-radius:12px; padding:14px; font:13px/1.5 ui-monospace,Menlo,monospace; resize:vertical; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; margin:14px 0; align-items:center; }
+  button { font:inherit; font-weight:700; border:0; border-radius:12px; padding:12px 20px; cursor:pointer; color:#062; background:var(--accent); }
+  button.ghost { background:transparent; color:var(--accent); border:1px solid var(--accent); }
+  button:disabled { opacity:.4; cursor:not-allowed; }
+  #status { font-size:14px; color:var(--muted); min-height:20px; }
+  .err { color:#f87171; }
+  table { border-collapse:collapse; margin-top:12px; font-size:13px; max-width:100%; overflow:auto; display:block; }
+  th,td { border:1px solid var(--line); padding:5px 9px; text-align:left; white-space:nowrap; }
+  th { background:#1c1c26; }
+  .upsell { margin-top:30px; padding:18px; border:1px dashed var(--line); border-radius:14px; color:var(--muted); font-size:15px; }
+  .upsell a { color:var(--accent); font-weight:700; }
+  details { margin-top:26px; border-top:1px solid var(--line); padding-top:14px; }
+  summary { cursor:pointer; font-weight:700; }
+  details p { color:var(--muted); margin:8px 0 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>HTML Table → CSV</h1>
+  <p class="sub">Paste an HTML table (or its <code>&lt;table&gt;</code> markup) below. Get clean CSV to download, or TSV to paste straight into Google Sheets / Excel. Runs entirely in your browser — nothing is uploaded, no sign-up.</p>
+  <textarea id="in" placeholder="Paste a table here (select a table on any page → copy → paste), or paste raw &lt;table&gt;...&lt;/table&gt; HTML"></textarea>
+  <div class="row">
+    <button id="parse">Parse table</button>
+    <button id="csv" class="ghost" disabled>⬇ Download CSV</button>
+    <button id="tsv" class="ghost" disabled>📋 Copy as TSV (for Sheets)</button>
+  </div>
+  <div id="status">Paste a table, then click “Parse table”.</div>
+  <div id="preview"></div>
+  <div class="upsell">
+    Need a table off a <strong>live page</strong> — behind a login, across pagination, or auto-refreshed?
+    A web page can’t read another site. <a href="https://chromewebstore.google.com/detail/pfmhdmkfgamjnmfgbcllpllcjbgjfakc" target="_blank" rel="noopener">Get the data-scraper Chrome extension →</a>
+  </div>
+  <details><summary>How do I convert an HTML table to CSV without code?</summary><p>Select the table on the page, copy it, paste into the box above, and click Parse then Download CSV. It all happens locally in your browser.</p></details>
+  <details><summary>Paste straight into Google Sheets / Excel?</summary><p>Click “Copy as TSV”, then paste into a sheet — each column lands in its own cell.</p></details>
+</div>
+<script>
+(function () {
+  var inEl = document.getElementById('in');
+  var statusEl = document.getElementById('status');
+  var preview = document.getElementById('preview');
+  var csvBtn = document.getElementById('csv');
+  var tsvBtn = document.getElementById('tsv');
+  var rows = [];
+
+  function extract(markup) {
+    var doc = new DOMParser().parseFromString(markup, 'text/html');
+    var table = doc.querySelector('table');
+    if (!table) return null;
+    var out = [];
+    table.querySelectorAll('tr').forEach(function (tr) {
+      var cells = [];
+      tr.querySelectorAll('th,td').forEach(function (c) { cells.push((c.textContent || '').replace(/\s+/g, ' ').trim()); });
+      if (cells.length) out.push(cells);
+    });
+    return out.length ? out : null;
+  }
+  function toCSV(r) {
+    return r.map(function (row) {
+      return row.map(function (v) {
+        return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v;
+      }).join(',');
+    }).join('\r\n');
+  }
+  function toTSV(r) { return r.map(function (row) { return row.map(function (v) { return v.replace(/\t/g, ' '); }).join('\t'); }).join('\n'); }
+  function renderPreview(r) {
+    var max = r.slice(0, 12);
+    var h = '<table>' + max.map(function (row, i) {
+      var tag = i === 0 ? 'th' : 'td';
+      return '<tr>' + row.map(function (v) { return '<' + tag + '>' + v.replace(/[<&>]/g, function (m) { return ({ '<': '&lt;', '&': '&amp;', '>': '&gt;' }[m]); }) + '</' + tag + '>'; }).join('') + '</tr>';
+    }).join('') + '</table>';
+    preview.innerHTML = h + (r.length > 12 ? '<p style="color:var(--muted);font-size:13px;margin-top:6px">…' + (r.length - 12) + ' more rows</p>' : '');
+  }
+
+  document.getElementById('parse').addEventListener('click', function () {
+    var markup = inEl.value.trim();
+    if (!markup) { statusEl.className = 'err'; statusEl.textContent = 'Paste a table first.'; return; }
+    // if they pasted rendered text without tags, wrap a heuristic: tabs/newlines → table
+    if (!/</.test(markup)) {
+      rows = markup.split(/\n/).map(function (l) { return l.split(/\t|\s{2,}/).map(function (s) { return s.trim(); }); }).filter(function (r) { return r.join('').length; });
+    } else {
+      rows = extract(markup);
+    }
+    if (!rows || !rows.length) { statusEl.className = 'err'; statusEl.textContent = 'No table found. Paste an HTML <table>, or copy a table from a page and paste it here.'; csvBtn.disabled = tsvBtn.disabled = true; preview.innerHTML = ''; return; }
+    statusEl.className = ''; statusEl.textContent = 'Parsed ' + rows.length + ' rows × ' + rows[0].length + ' columns.';
+    renderPreview(rows);
+    csvBtn.disabled = tsvBtn.disabled = false;
+  });
+  csvBtn.addEventListener('click', function () {
+    var blob = new Blob([toCSV(rows)], { type: 'text/csv' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'table-' + new Date().toISOString().slice(0, 10) + '.csv';
+    a.click();
+  });
+  tsvBtn.addEventListener('click', function () {
+    var tsv = toTSV(rows);
+    if (navigator.clipboard) { navigator.clipboard.writeText(tsv).then(function () { statusEl.textContent = 'Copied as TSV — paste into a sheet.'; }); }
+    else { inEl.value = tsv; statusEl.textContent = 'Clipboard unavailable — TSV placed in the box; select + copy.'; }
+  });
+})();
+</script>
+</body>
+</html>
