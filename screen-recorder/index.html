@@ -45,6 +45,7 @@
     align-items:center; justify-content:center; font-size:13px; font-weight:800; }
   .shots { display:flex; gap:16px; overflow-x:auto; padding:6px 0 14px; scroll-snap-type:x mandatory; }
   .shot { width:300px; flex:0 0 auto; border-radius:14px; border:1px solid var(--line); scroll-snap-align:center; }
+  .demo { width:100%; max-width:680px; display:block; margin:0 auto; border-radius:16px; border:1px solid var(--line); box-shadow:0 24px 60px -20px var(--glow); background:#000; }
   .price { text-align:center; }
   .price .big { font-size:40px; font-weight:900; }
   .price .note { color:var(--muted); font-size:15px; margin-top:6px; }
@@ -62,6 +63,10 @@
   <p class="sub">Most &quot;free&quot; screen recorders stamp a logo on your video, cut you off at a few minutes, or make you create an account before you can hit record. You just wanted to capture the tab.</p>
   <a class="cta" href="https://chromewebstore.google.com/detail/fofbagleicmaejjeliklkfdalhhbfcop" rel="noopener">Add to Chrome <span class="free">— Free</span></a>
 </div></header>
+
+<section style="padding-top:8px"><div class="wrap">
+  <video class="demo" src="demo.mp4" autoplay muted loop playsinline poster="cws-1.png"></video>
+</div></section>
 
 <section><div class="wrap">
   <h2>One click in the toolbar → recording. No watermark, no limit, no account.</h2>
