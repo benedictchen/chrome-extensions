@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Extract Emails &amp; Phone Numbers from text — free, no sign-up</title>
+<meta name="description" content="Paste any text or HTML and pull out every email address and phone number into a clean, deduped CSV. Runs in your browser, nothing uploaded, no account.">
+<link rel="canonical" href="https://benedictchen.github.io/chrome-extensions/extract-emails-phone-numbers/">
+<meta property="og:title" content="Extract Emails & Phone Numbers — free, in-browser">
+<meta property="og:description" content="Paste text → get every email + phone as CSV. No upload, no sign-up.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Extract Emails & Phone Numbers","applicationCategory":"BusinessApplication","operatingSystem":"Any (modern browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I extract all emails from a block of text?","acceptedAnswer":{"@type":"Answer","text":"Paste the text (or page HTML) into the box and click Extract. Every email is listed and deduped; download as CSV. It runs locally in your browser."}},{"@type":"Question","name":"Can it pull phone numbers too?","acceptedAnswer":{"@type":"Answer","text":"Yes — it detects common phone formats (US and international with + country codes) alongside emails."}},{"@type":"Question","name":"How do I extract contacts from a live page or directory?","acceptedAnswer":{"@type":"Answer","text":"A web page cannot read another site. For live pages, directories, or paginated results, use the data-scraper Chrome extension."}}]}</script>
+<style>
+  :root { --accent:#f59e0b; --bg:#0b0b10; --surface:#15151d; --line:#262630; --text:#f4f4f6; --muted:#a0a0ad; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+  .wrap { max-width:820px; margin:0 auto; padding:44px 22px 80px; }
+  h1 { font-size:29px; letter-spacing:-.02em; }
+  p.sub { color:var(--muted); margin:10px 0 22px; }
+  textarea { width:100%; min-height:170px; background:var(--surface); color:var(--text); border:1px solid var(--line); border-radius:12px; padding:14px; font:13px/1.5 ui-monospace,Menlo,monospace; resize:vertical; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; margin:14px 0; align-items:center; }
+  button { font:inherit; font-weight:700; border:0; border-radius:12px; padding:12px 20px; cursor:pointer; color:#3a2; background:var(--accent); }
+  button.ghost { background:transparent; color:var(--accent); border:1px solid var(--accent); }
+  button:disabled { opacity:.4; cursor:not-allowed; }
+  #status { font-size:14px; color:var(--muted); min-height:20px; }
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px; }
+  .cols h3 { font-size:14px; color:var(--muted); margin-bottom:6px; }
+  .list { background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:10px; font:12px/1.5 ui-monospace,Menlo,monospace; max-height:240px; overflow:auto; white-space:pre-wrap; word-break:break-all; }
+  .upsell { margin-top:30px; padding:18px; border:1px dashed var(--line); border-radius:14px; color:var(--muted); font-size:15px; }
+  .upsell a { color:var(--accent); font-weight:700; }
+  @media (max-width:620px){ .cols{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Extract Emails &amp; Phone Numbers</h1>
+  <p class="sub">Paste any text or HTML below. Get every email address and phone number, deduped, ready to download as CSV. Runs entirely in your browser — nothing uploaded, no sign-up.</p>
+  <textarea id="in" placeholder="Paste text, an email thread, or page HTML here…"></textarea>
+  <div class="row">
+    <button id="go">Extract</button>
+    <button id="csv" class="ghost" disabled>⬇ Download CSV</button>
+    <button id="copy" class="ghost" disabled>📋 Copy all</button>
+  </div>
+  <div id="status">Paste text, then click “Extract”.</div>
+  <div class="cols">
+    <div><h3 id="eh">Emails</h3><div class="list" id="emails"></div></div>
+    <div><h3 id="ph">Phone numbers</h3><div class="list" id="phones"></div></div>
+  </div>
+  <div class="upsell">
+    Need contacts from a <strong>live page, directory, or across pages</strong>?
+    A web page can’t read another site. <a href="https://chromewebstore.google.com/detail/pfmhdmkfgamjnmfgbcllpllcjbgjfakc" target="_blank" rel="noopener">Get the data-scraper Chrome extension →</a>
+    <div style="margin-top:12px;font-size:14px"><a href="../" style="color:var(--accent);font-weight:700">← more free browser tools &amp; extensions</a></div>
+  </div>
+</div>
+<script>
+(function () {
+  var inEl = document.getElementById('in');
+  var statusEl = document.getElementById('status');
+  var emailsEl = document.getElementById('emails');
+  var phonesEl = document.getElementById('phones');
+  var csvBtn = document.getElementById('csv');
+  var copyBtn = document.getElementById('copy');
+  var emails = [], phones = [];
+
+  // email: standard local@domain.tld (conservative, avoids trailing punctuation)
+  var EMAIL = /[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}/g;
+  // phone: optional +country, separators space/.-(), 7-15 digits total
+  var PHONE = /(?:\+?\d{1,3}[\s.\-]?)?(?:\(\d{1,4}\)[\s.\-]?)?\d{2,4}(?:[\s.\-]?\d{2,4}){1,4}/g;
+
+  function uniq(a) { var seen = {}, out = []; for (var i = 0; i < a.length; i++) { var k = a[i].toLowerCase(); if (!seen[k]) { seen[k] = 1; out.push(a[i]); } } return out; }
+  function digitsOnly(s) { return (s.match(/\d/g) || []).length; }
+
+  document.getElementById('go').addEventListener('click', function () {
+    var text = inEl.value;
+    if (!text.trim()) { statusEl.textContent = 'Paste some text first.'; return; }
+    emails = uniq(text.match(EMAIL) || []);
+    // phones: filter false positives — require 7..15 digits and not part of an email
+    var emailZone = (text.match(EMAIL) || []).join(' ');
+    phones = uniq((text.match(PHONE) || [])
+      .map(function (s) { return s.trim(); })
+      .filter(function (s) { var d = digitsOnly(s); return d >= 7 && d <= 15 && emailZone.indexOf(s) === -1; }));
+    emailsEl.textContent = emails.join('\n') || '(none found)';
+    phonesEl.textContent = phones.join('\n') || '(none found)';
+    statusEl.textContent = 'Found ' + emails.length + ' email(s) and ' + phones.length + ' phone number(s).';
+    var any = emails.length || phones.length;
+    csvBtn.disabled = copyBtn.disabled = !any;
+  });
+
+  function toCSV() {
+    var rows = [['type', 'value']];
+    emails.forEach(function (e) { rows.push(['email', e]); });
+    phones.forEach(function (p) { rows.push(['phone', p]); });
+    return rows.map(function (r) { return r.map(function (v) { return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }).join(','); }).join('\r\n');
+  }
+  csvBtn.addEventListener('click', function () {
+    var blob = new Blob([toCSV()], { type: 'text/csv' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'contacts-' + new Date().toISOString().slice(0, 10) + '.csv';
+    a.click();
+  });
+  copyBtn.addEventListener('click', function () {
+    var all = emails.concat(phones).join('\n');
+    if (navigator.clipboard) { navigator.clipboard.writeText(all).then(function () { statusEl.textContent = 'Copied ' + (emails.length + phones.length) + ' item(s).'; }); }
+  });
+})();
+</script>
+</body>
+</html>
