@@ -45,6 +45,11 @@
     align-items:center; justify-content:center; font-size:13px; font-weight:800; }
   .shots { display:flex; gap:16px; overflow-x:auto; padding:6px 0 14px; scroll-snap-type:x mandatory; }
   .shot { width:300px; flex:0 0 auto; border-radius:14px; border:1px solid var(--line); scroll-snap-align:center; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; }
+  .card { display:block; text-decoration:none; color:inherit; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px; transition:transform .12s ease,border-color .12s ease; }
+  .card:hover { transform:translateY(-2px); border-color:var(--a,var(--accent)); }
+  .card .ic { font-size:24px; width:46px; height:46px; line-height:46px; text-align:center; border-radius:11px; background:linear-gradient(135deg,var(--a,var(--accent)),var(--b,var(--accent2))); margin-bottom:10px; }
+  .card .t { font-weight:700; font-size:15px; }
   .demo { width:100%; max-width:680px; display:block; margin:0 auto; border-radius:16px; border:1px solid var(--line); box-shadow:0 24px 60px -20px var(--glow); background:#000; }
   .price { text-align:center; }
   .price .big { font-size:40px; font-weight:900; }
@@ -97,6 +102,16 @@
   <h2>Questions</h2>
       <details class="faq"><summary>Does it work on every site?</summary><p>It applies to any page you turn it on for, with brightness/contrast you can adjust per site.</p></details>
       <details class="faq"><summary>Do you collect my browsing?</summary><p>No. It only applies a local CSS filter; your per-site choice is stored locally.</p></details>
+</div></section>
+
+<section><div class="wrap">
+  <h2>More free tools from BenettiMedia</h2>
+  <div class="grid">
+    <a class="card" href="../screen-recorder/" style="--a:#ef4444;--b:#f43f5e"><div class="ic">⏺</div><div class="t">Snappy Screen Recorder</div></a>
+    <a class="card" href="../data-scraper/" style="--a:#059669;--b:#10b981"><div class="ic">🧲</div><div class="t">Super Scraper</div></a>
+    <a class="card" href="../volume-booster/" style="--a:#f59e0b;--b:#fb7185"><div class="ic">🔊</div><div class="t">Big Volume Booster</div></a>
+    <a class="card" href="../auto-refresh/" style="--a:#3b82f6;--b:#06b6d4"><div class="ic">🔄</div><div class="t">Auto Refresh Plus</div></a>
+  </div>
 </div></section>
 
 <footer><div class="wrap">
