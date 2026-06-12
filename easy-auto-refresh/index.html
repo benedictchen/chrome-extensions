@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Screen Recorder – Private, Local-First</title>
-<meta name="description" content="231 MB install size for a recorder utility Screen recorder that stays out of your pages — local saves, zero content scripts, under 5 MB">
-<link rel="canonical" href="https://chromewebstore.google.com/detail/fofbagleicmaejjeliklkfdalhhbfcop">
+<title>Easy Auto Refresh — Tab Reload Timer</title>
+<meta name="description" content="Incumbent requests browsingData permission enabling history/cookie clearing — unrelated to refresh The privacy-first auto-refresh: reload any tab on a timer w">
+<link rel="canonical" href="">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Screen Recorder – Private, Local-First">
-<meta property="og:description" content="231 MB install size for a recorder utility Screen recorder that stays out of your pages — local saves, zero content scripts, under 5 MB">
-
+<meta property="og:title" content="Easy Auto Refresh — Tab Reload Timer">
+<meta property="og:description" content="Incumbent requests browsingData permission enabling history/cookie clearing — unrelated to refresh The privacy-first auto-refresh: reload any tab on a timer w">
+<meta property="og:image" content="cws-1.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Screen Recorder – Private, Local-First">
-<meta name="twitter:description" content="231 MB install size for a recorder utility Screen recorder that stays out of your pages — local saves, zero content scripts, under 5 MB">
+<meta name="twitter:title" content="Easy Auto Refresh — Tab Reload Timer">
+<meta name="twitter:description" content="Incumbent requests browsingData permission enabling history/cookie clearing — unrelated to refresh The privacy-first auto-refresh: reload any tab on a timer w">
+<meta name="twitter:image" content="cws-1.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it work after I close the popup?","acceptedAnswer":{"@type":"Answer","text":"Yes — alarms run in the background independently of the popup."}},{"@type":"Question","name":"Will it reload tabs I didn't set it on?","acceptedAnswer":{"@type":"Answer","text":"No — each tab has its own independent timer; other tabs are untouched."}},{"@type":"Question","name":"Does the interval survive a browser restart?","acceptedAnswer":{"@type":"Answer","text":"Yes — alarms are persisted by Chrome and resume automatically."}},{"@type":"Question","name":"Can I use a keyboard shortcut?","acceptedAnswer":{"@type":"Answer","text":"Yes — set it in chrome://extensions/shortcuts; it toggles start/stop on the active tab."}}]}</script>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it inject scripts into Gmail or Google Drive?","acceptedAnswer":{"@type":"Answer","text":"No. Zero content scripts are declared or injected into any page unless you explicitly start a recording on that specific tab."}},{"@type":"Question","name":"Where are recordings saved?","acceptedAnswer":{"@type":"Answer","text":"Directly to your local Downloads folder — no cloud account or sign-in required."}},{"@type":"Question","name":"What permissions does it request?","acceptedAnswer":{"@type":"Answer","text":"activeTab, tabCapture, desktopCapture, offscreen, storage, alarms, and notifications — no tabs, webNavigation, or unlimitedStorage."}},{"@type":"Question","name":"How large is the extension?","acceptedAnswer":{"@type":"Answer","text":"Under 5 MB installed — no vendored SDKs, no debug bundles shipped to production."}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Screen Recorder – Private, Local-First","applicationCategory":"BrowserApplication","operatingSystem":"Chrome","url":"https://chromewebstore.google.com/detail/fofbagleicmaejjeliklkfdalhhbfcop","sameAs":"https://chromewebstore.google.com/detail/fofbagleicmaejjeliklkfdalhhbfcop","description":"231 MB install size for a recorder utility Screen recorder that stays out of your pages — local saves, zero content scripts, under 5 MB","offers":{"@type":"Offer","price":"9.67","priceCurrency":"USD"}}</script>
 <style>
   :root { --accent:#3b82f6; --accent2:#5e58f7; --glow:#5e58f7;
     --bg:#0b0b10; --surface:#15151d; --line:#262630; --text:#f4f4f6; --muted:#a0a0ad; }
@@ -65,38 +65,48 @@
 <body>
 <header><div class="wrap">
   <div class="badge">🧩</div>
-  <h1>231 MB install size for a recorder utility</h1>
-  <p class="sub">Record tab, window, or desktop — zero content scripts, under 5 MB, saves locally, no cloud lock-in.</p>
-  <a class="cta" href="https://chromewebstore.google.com/detail/fofbagleicmaejjeliklkfdalhhbfcop" rel="noopener">Add to Chrome <span class="free">— Free</span></a>
+  <h1>Incumbent requests browsingData permission enabling history/cookie clearing — unrelated to refresh</h1>
+  <p class="sub">Reload any tab on a timer. Zero surveillance: no tabs permission, no content scripts, no data collection.</p>
+  <a class="cta" href="#" rel="noopener">Add to Chrome <span class="free">— Free</span></a>
 </div></header>
 
-
+<section style="padding-top:8px"><div class="wrap">
+  <video class="demo" src="demo.mp4" autoplay muted loop playsinline poster="cws-1.png"></video>
+</div></section>
 
 <section><div class="wrap">
-  <h2>Screen recorder that stays out of your pages — local saves, zero content scripts, under 5 MB</h2>
+  <h2>The privacy-first auto-refresh: reload any tab on a timer with zero surveillance permissions.</h2>
   <ul class="benefits">
-        <li><span class="chk">✓</span>Under 5 MB install — no vendored SDKs, no debug bundles</li>
-        <li><span class="chk">✓</span>Zero ambient content scripts — injection only when user explicitly triggers capture</li>
-        <li><span class="chk">✓</span>activeTab-only permission — no persistent surveillance of other tabs' URLs</li>
-        <li><span class="chk">✓</span>All recordings saved locally to Downloads — no vendor domain contacted</li>
-        <li><span class="chk">✓</span>No DOM mutation on any page outside the extension popup or side-panel</li>
+        <li><span class="chk">✓</span>Only activeTab + storage + alarms — passes strict enterprise permission audits</li>
+        <li><span class="chk">✓</span>No content script ever injected on third-party pages</li>
+        <li><span class="chk">✓</span>Keyboard shortcut via chrome.commands API — zero DOM footprint</li>
+        <li><span class="chk">✓</span>≤15KB, no analytics, no registration gate</li>
+        <li><span class="chk">✓</span>Badge counter feedback by default; notifications opt-in only</li>
+        <li><span class="chk">✓</span>Intervals survive browser restart via alarms API</li>
   </ul>
 </div></section>
 
-
+<section><div class="wrap">
+  <div class="shots">
+        <img class="shot" src="cws-1.png" alt="Easy Auto Refresh — Tab Reload Timer screenshot" loading="lazy">
+        <img class="shot" src="cws-2.png" alt="Easy Auto Refresh — Tab Reload Timer screenshot" loading="lazy">
+        <img class="shot" src="cws-3.png" alt="Easy Auto Refresh — Tab Reload Timer screenshot" loading="lazy">
+        <img class="shot" src="cws-4.png" alt="Easy Auto Refresh — Tab Reload Timer screenshot" loading="lazy">
+  </div>
+</div></section>
 
 <section><div class="wrap card price">
   <div class="big">Your first 10 uses are on us</div>
   <div class="note">No account, no card. Keep going for $9.67/mo — unlimited, cancel anytime.</div>
-  <p style="margin-top:22px"><a class="cta" href="https://chromewebstore.google.com/detail/fofbagleicmaejjeliklkfdalhhbfcop" rel="noopener">Add to Chrome <span class="free">— Free</span></a></p>
+  <p style="margin-top:22px"><a class="cta" href="#" rel="noopener">Add to Chrome <span class="free">— Free</span></a></p>
 </div></section>
 
 <section><div class="wrap">
   <h2>Questions</h2>
-      <details class="faq"><summary>Does it inject scripts into Gmail or Google Drive?</summary><p>No. Zero content scripts are declared or injected into any page unless you explicitly start a recording on that specific tab.</p></details>
-      <details class="faq"><summary>Where are recordings saved?</summary><p>Directly to your local Downloads folder — no cloud account or sign-in required.</p></details>
-      <details class="faq"><summary>What permissions does it request?</summary><p>activeTab, tabCapture, desktopCapture, offscreen, storage, alarms, and notifications — no tabs, webNavigation, or unlimitedStorage.</p></details>
-      <details class="faq"><summary>How large is the extension?</summary><p>Under 5 MB installed — no vendored SDKs, no debug bundles shipped to production.</p></details>
+      <details class="faq"><summary>Does it work after I close the popup?</summary><p>Yes — alarms run in the background independently of the popup.</p></details>
+      <details class="faq"><summary>Will it reload tabs I didn't set it on?</summary><p>No — each tab has its own independent timer; other tabs are untouched.</p></details>
+      <details class="faq"><summary>Does the interval survive a browser restart?</summary><p>Yes — alarms are persisted by Chrome and resume automatically.</p></details>
+      <details class="faq"><summary>Can I use a keyboard shortcut?</summary><p>Yes — set it in chrome://extensions/shortcuts; it toggles start/stop on the active tab.</p></details>
 </div></section>
 
 <section><div class="wrap">
@@ -105,12 +115,12 @@
     <a class="card" href="../auto-refresh/" style="--a:#3b82f6;--b:#5e58f7"><div class="ic">🧩</div><div class="t">Auto Refresh</div></a>
     <a class="card" href="../dark-mode/" style="--a:#6d28d9;--b:#bf42de"><div class="ic">🧩</div><div class="t">Dark Mode Deluxe</div></a>
     <a class="card" href="../data-scraper/" style="--a:#3b82f6;--b:#5e58f7"><div class="ic">🧩</div><div class="t">TableSnap</div></a>
-    <a class="card" href="../easy-auto-refresh/" style="--a:#3b82f6;--b:#5e58f7"><div class="ic">🧩</div><div class="t">Easy Auto Refresh</div></a>
+    <a class="card" href="../online-security/" style="--a:#3b82f6;--b:#5e58f7"><div class="ic">🧩</div><div class="t">PhishGuard</div></a>
   </div>
 </div></section>
 
 <footer><div class="wrap">
-  Screen Recorder – Private, Local-First · <a href="https://chromewebstore.google.com/detail/fofbagleicmaejjeliklkfdalhhbfcop" rel="noopener">Get it on the Chrome Web Store</a>
+  Easy Auto Refresh — Tab Reload Timer · <a href="#" rel="noopener">Get it on the Chrome Web Store</a>
 </div></footer>
 </body>
 </html>

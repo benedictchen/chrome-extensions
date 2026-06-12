@@ -3,27 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Auto Refresh Plus — Auto Reload Timer</title>
-<meta name="description" content="Stop refreshing tabs by hand Set a timer. Walk away. Always current.">
+<title>Auto Refresh — Zero Surveillance Tab Timer</title>
+<meta name="description" content="Incumbent declares browsingData permission — enables clearing history/cookies with zero relevance to tab refresh The only auto-refresh extension that never re">
 <link rel="canonical" href="https://chromewebstore.google.com/detail/jklpobdkabihgfpcnoijedieihdcpbeo">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Auto Refresh Plus — Auto Reload Timer">
-<meta property="og:description" content="Stop refreshing tabs by hand Set a timer. Walk away. Always current.">
+<meta property="og:title" content="Auto Refresh — Zero Surveillance Tab Timer">
+<meta property="og:description" content="Incumbent declares browsingData permission — enables clearing history/cookies with zero relevance to tab refresh The only auto-refresh extension that never re">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Auto Refresh Plus — Auto Reload Timer">
-<meta name="twitter:description" content="Stop refreshing tabs by hand Set a timer. Walk away. Always current.">
+<meta name="twitter:title" content="Auto Refresh — Zero Surveillance Tab Timer">
+<meta name="twitter:description" content="Incumbent declares browsingData permission — enables clearing history/cookies with zero relevance to tab refresh The only auto-refresh extension that never re">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Will it reload tabs in the background?","acceptedAnswer":{"@type":"Answer","text":"Yes — the timer runs even when the tab isn't focused, so pages stay current while you work elsewhere."}},{"@type":"Question","name":"Does it cost anything?","acceptedAnswer":{"@type":"Answer","text":"No. Auto Refresh Plus is completely free with no subscription or account required."}},{"@type":"Question","name":"Can I set different intervals for different tabs?","acceptedAnswer":{"@type":"Answer","text":"Yes — each tab gets its own independent timer and interval setting."}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Auto Refresh Plus — Auto Reload Timer","applicationCategory":"BrowserApplication","operatingSystem":"Chrome","url":"https://chromewebstore.google.com/detail/jklpobdkabihgfpcnoijedieihdcpbeo","sameAs":"https://chromewebstore.google.com/detail/jklpobdkabihgfpcnoijedieihdcpbeo","description":"Stop refreshing tabs by hand Set a timer. Walk away. Always current.","offers":{"@type":"Offer","price":"9.67","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it work after browser restart?","acceptedAnswer":{"@type":"Answer","text":"Yes — intervals are saved via chrome.alarms and resume automatically."}},{"@type":"Question","name":"Can I refresh multiple tabs simultaneously?","acceptedAnswer":{"@type":"Answer","text":"Click the extension on each tab individually to set independent intervals per tab."}},{"@type":"Question","name":"Why no notifications by default?","acceptedAnswer":{"@type":"Answer","text":"Badge counter is the default feedback; enable OS notifications in popup settings if preferred."}},{"@type":"Question","name":"Does it work on chrome:// or chrome-extension:// pages?","acceptedAnswer":{"@type":"Answer","text":"No — Chrome restricts extensions on system pages; a graceful error is shown instead of crashing."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Auto Refresh — Zero Surveillance Tab Timer","applicationCategory":"BrowserApplication","operatingSystem":"Chrome","url":"https://chromewebstore.google.com/detail/jklpobdkabihgfpcnoijedieihdcpbeo","sameAs":"https://chromewebstore.google.com/detail/jklpobdkabihgfpcnoijedieihdcpbeo","description":"Incumbent declares browsingData permission — enables clearing history/cookies with zero relevance to tab refresh The only auto-refresh extension that never re","offers":{"@type":"Offer","price":"9.67","priceCurrency":"USD"}}</script>
 <style>
-  :root { --accent:#16a34a; --accent2:#1abe9b; --glow:#1abe9b;
+  :root { --accent:#3b82f6; --accent2:#5e58f7; --glow:#5e58f7;
     --bg:#0b0b10; --surface:#15151d; --line:#262630; --text:#f4f4f6; --muted:#a0a0ad; }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
   .wrap { max-width:880px; margin:0 auto; padding:0 22px; }
   a { color:inherit; }
-  .cta { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg, #16a34a, #1abe9b); color:#fff; font-weight:800;
+  .cta { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg, #3b82f6, #5e58f7); color:#fff; font-weight:800;
     font-size:18px; padding:15px 30px; border-radius:14px; text-decoration:none; box-shadow:0 10px 34px -8px var(--glow);
     transition:transform .12s ease; }
   .cta:hover { transform:translateY(-2px); }
@@ -32,7 +32,7 @@
   .badge { display:inline-block; font-size:34px; width:74px; height:74px; line-height:74px; border-radius:20px;
     background:var(--surface); border:1px solid var(--line); margin-bottom:22px; box-shadow:0 0 40px -16px var(--glow); }
   h1 { font-size:clamp(28px,5vw,46px); line-height:1.12; letter-spacing:-.02em; margin-bottom:16px; }
-  h1 .hl { background:linear-gradient(135deg, #16a34a, #1abe9b); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  h1 .hl { background:linear-gradient(135deg, #3b82f6, #5e58f7); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
   .sub { color:var(--muted); font-size:clamp(16px,2.4vw,20px); max-width:620px; margin:0 auto 30px; }
   section { padding:40px 0; }
   .card { background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:30px; }
@@ -42,7 +42,7 @@
   .pain li:before { content:"😖"; position:absolute; left:0; top:11px; }
   .benefits { list-style:none; display:grid; gap:12px; }
   .benefits li { display:flex; gap:12px; align-items:flex-start; }
-  .chk { color:#fff; background:linear-gradient(135deg, #16a34a, #1abe9b); min-width:24px; height:24px; border-radius:50%; display:inline-flex;
+  .chk { color:#fff; background:linear-gradient(135deg, #3b82f6, #5e58f7); min-width:24px; height:24px; border-radius:50%; display:inline-flex;
     align-items:center; justify-content:center; font-size:13px; font-weight:800; }
   .shots { display:flex; gap:16px; overflow-x:auto; padding:6px 0 14px; scroll-snap-type:x mandatory; }
   .shot { width:300px; flex:0 0 auto; border-radius:14px; border:1px solid var(--line); scroll-snap-align:center; }
@@ -65,20 +65,21 @@
 <body>
 <header><div class="wrap">
   <div class="badge">🧩</div>
-  <h1>Stop refreshing tabs by hand</h1>
-  <p class="sub">Manually hitting F5 every few minutes means you miss bids, stale prices, and delayed alerts the moment you look away.</p>
+  <h1>Incumbent declares browsingData permission — enables clearing history/cookies with zero relevance to tab refresh</h1>
+  <p class="sub">Reload your tab on a set timer — privacy-first, zero content scripts, no tabs or browsingData permissions ever required.</p>
   <a class="cta" href="https://chromewebstore.google.com/detail/jklpobdkabihgfpcnoijedieihdcpbeo" rel="noopener">Add to Chrome <span class="free">— Free</span></a>
 </div></header>
 
 
 
 <section><div class="wrap">
-  <h2>Set a timer. Walk away. Always current.</h2>
+  <h2>The only auto-refresh extension that never reads your tab list, injects scripts, or asks for browsingData</h2>
   <ul class="benefits">
-        <li><span class="chk">✓</span>Pages stay live automatically — no more missed bids or stale data</li>
-        <li><span class="chk">✓</span>Set it once per tab and forget it; works while you focus elsewhere</li>
-        <li><span class="chk">✓</span>Free, no account, no permissions creep — installs in seconds</li>
-        <li><span class="chk">✓</span>Custom intervals from seconds to hours fit any use case</li>
+        <li><span class="chk">✓</span>Only activeTab, storage, alarms — passes any permission audit instantly</li>
+        <li><span class="chk">✓</span>No content scripts ever injected on third-party pages</li>
+        <li><span class="chk">✓</span>Keyboard shortcut via chrome.commands — zero DOM footprint</li>
+        <li><span class="chk">✓</span>≤15KB shipped; no analytics, no registration gate, no remote calls except the reload itself</li>
+        <li><span class="chk">✓</span>Intervals survive browser restarts via chrome.alarms</li>
   </ul>
 </div></section>
 
@@ -92,23 +93,24 @@
 
 <section><div class="wrap">
   <h2>Questions</h2>
-      <details class="faq"><summary>Will it reload tabs in the background?</summary><p>Yes — the timer runs even when the tab isn't focused, so pages stay current while you work elsewhere.</p></details>
-      <details class="faq"><summary>Does it cost anything?</summary><p>No. Auto Refresh Plus is completely free with no subscription or account required.</p></details>
-      <details class="faq"><summary>Can I set different intervals for different tabs?</summary><p>Yes — each tab gets its own independent timer and interval setting.</p></details>
+      <details class="faq"><summary>Does it work after browser restart?</summary><p>Yes — intervals are saved via chrome.alarms and resume automatically.</p></details>
+      <details class="faq"><summary>Can I refresh multiple tabs simultaneously?</summary><p>Click the extension on each tab individually to set independent intervals per tab.</p></details>
+      <details class="faq"><summary>Why no notifications by default?</summary><p>Badge counter is the default feedback; enable OS notifications in popup settings if preferred.</p></details>
+      <details class="faq"><summary>Does it work on chrome:// or chrome-extension:// pages?</summary><p>No — Chrome restricts extensions on system pages; a graceful error is shown instead of crashing.</p></details>
 </div></section>
 
 <section><div class="wrap">
   <h2>More free tools from BenettiMedia</h2>
   <div class="grid">
     <a class="card" href="../dark-mode/" style="--a:#6d28d9;--b:#bf42de"><div class="ic">🧩</div><div class="t">Dark Mode Deluxe</div></a>
-    <a class="card" href="../data-scraper/" style="--a:#2bb673;--b:#31cec4"><div class="ic">🧩</div><div class="t">Super Scraper</div></a>
-    <a class="card" href="../screen-recorder/" style="--a:#e23b3b;--b:#e69256"><div class="ic">🧩</div><div class="t">Snappy Screen Recorder</div></a>
-    <a class="card" href="../volume-booster/" style="--a:#3b82f6;--b:#5e58f7"><div class="ic">🧩</div><div class="t">Big Volume Booster</div></a>
+    <a class="card" href="../data-scraper/" style="--a:#3b82f6;--b:#5e58f7"><div class="ic">🧩</div><div class="t">TableSnap</div></a>
+    <a class="card" href="../easy-auto-refresh/" style="--a:#3b82f6;--b:#5e58f7"><div class="ic">🧩</div><div class="t">Easy Auto Refresh</div></a>
+    <a class="card" href="../online-security/" style="--a:#3b82f6;--b:#5e58f7"><div class="ic">🧩</div><div class="t">PhishGuard</div></a>
   </div>
 </div></section>
 
 <footer><div class="wrap">
-  Auto Refresh Plus — Auto Reload Timer · <a href="https://chromewebstore.google.com/detail/jklpobdkabihgfpcnoijedieihdcpbeo" rel="noopener">Get it on the Chrome Web Store</a>
+  Auto Refresh — Zero Surveillance Tab Timer · <a href="https://chromewebstore.google.com/detail/jklpobdkabihgfpcnoijedieihdcpbeo" rel="noopener">Get it on the Chrome Web Store</a>
 </div></footer>
 </body>
 </html>

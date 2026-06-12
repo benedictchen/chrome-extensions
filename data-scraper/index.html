@@ -3,27 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Web Scraper — Data Scraper to CSV/Excel</title>
-<meta name="description" content="Copy-paste data all day. There's a better way. One click. Clean spreadsheet. Done.">
+<title>Table &amp; List Scraper — Export CSV Instantly</title>
+<meta name="description" content="Incumbent bundles jQuery + Angular runtime (~12 MB), slowing pages Scrape any table or list to CSV in one click — private, local, instant.">
 <link rel="canonical" href="https://chromewebstore.google.com/detail/pfmhdmkfgamjnmfgbcllpllcjbgjfakc">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Web Scraper — Data Scraper to CSV/Excel">
-<meta property="og:description" content="Copy-paste data all day. There's a better way. One click. Clean spreadsheet. Done.">
+<meta property="og:title" content="Table &amp; List Scraper — Export CSV Instantly">
+<meta property="og:description" content="Incumbent bundles jQuery + Angular runtime (~12 MB), slowing pages Scrape any table or list to CSV in one click — private, local, instant.">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Web Scraper — Data Scraper to CSV/Excel">
-<meta name="twitter:description" content="Copy-paste data all day. There's a better way. One click. Clean spreadsheet. Done.">
+<meta name="twitter:title" content="Table &amp; List Scraper — Export CSV Instantly">
+<meta name="twitter:description" content="Incumbent bundles jQuery + Angular runtime (~12 MB), slowing pages Scrape any table or list to CSV in one click — private, local, instant.">
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it work on any website?","acceptedAnswer":{"@type":"Answer","text":"It works on any page with standard HTML tables or structured lists. Pages that load data dynamically via JavaScript may require scrolling to load content first."}},{"@type":"Question","name":"Is there really no row limit?","acceptedAnswer":{"@type":"Answer","text":"Correct — there is no cap imposed by the extension. The only limit is what your browser can load on the page and what Excel or your spreadsheet app can handle."}},{"@type":"Question","name":"Do I need to create an account?","acceptedAnswer":{"@type":"Answer","text":"No account, no sign-up, no email required. Install and use immediately."}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Web Scraper — Data Scraper to CSV/Excel","applicationCategory":"BrowserApplication","operatingSystem":"Chrome","url":"https://chromewebstore.google.com/detail/pfmhdmkfgamjnmfgbcllpllcjbgjfakc","sameAs":"https://chromewebstore.google.com/detail/pfmhdmkfgamjnmfgbcllpllcjbgjfakc","description":"Copy-paste data all day. There's a better way. One click. Clean spreadsheet. Done.","offers":{"@type":"Offer","price":"9.67","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it work on dynamic/SPA pages?","acceptedAnswer":{"@type":"Answer","text":"Yes — MutationObserver tracks newly added rows automatically; just re-open the popup after scrolling."}},{"@type":"Question","name":"Is my data sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Everything is processed locally and exported directly to your device. Zero network calls."}},{"@type":"Question","name":"Do I need an account?","acceptedAnswer":{"@type":"Answer","text":"No account required. Free for the first 10 extractions."}},{"@type":"Question","name":"What file formats are supported?","acceptedAnswer":{"@type":"Answer","text":"CSV and XLSX — both generated fully client-side."}},{"@type":"Question","name":"Why does it ask for scripting permission?","acceptedAnswer":{"@type":"Answer","text":"To read the DOM of the tab you are actively viewing — no background access, no other sites."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Table & List Scraper — Export CSV Instantly","applicationCategory":"BrowserApplication","operatingSystem":"Chrome","url":"https://chromewebstore.google.com/detail/pfmhdmkfgamjnmfgbcllpllcjbgjfakc","sameAs":"https://chromewebstore.google.com/detail/pfmhdmkfgamjnmfgbcllpllcjbgjfakc","description":"Incumbent bundles jQuery + Angular runtime (~12 MB), slowing pages Scrape any table or list to CSV in one click — private, local, instant.","offers":{"@type":"Offer","price":"9.67","priceCurrency":"USD"}}</script>
 <style>
-  :root { --accent:#2bb673; --accent2:#31cec4; --glow:#31cec4;
+  :root { --accent:#3b82f6; --accent2:#5e58f7; --glow:#5e58f7;
     --bg:#0b0b10; --surface:#15151d; --line:#262630; --text:#f4f4f6; --muted:#a0a0ad; }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
   .wrap { max-width:880px; margin:0 auto; padding:0 22px; }
   a { color:inherit; }
-  .cta { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg, #2bb673, #31cec4); color:#fff; font-weight:800;
+  .cta { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg, #3b82f6, #5e58f7); color:#fff; font-weight:800;
     font-size:18px; padding:15px 30px; border-radius:14px; text-decoration:none; box-shadow:0 10px 34px -8px var(--glow);
     transition:transform .12s ease; }
   .cta:hover { transform:translateY(-2px); }
@@ -32,7 +32,7 @@
   .badge { display:inline-block; font-size:34px; width:74px; height:74px; line-height:74px; border-radius:20px;
     background:var(--surface); border:1px solid var(--line); margin-bottom:22px; box-shadow:0 0 40px -16px var(--glow); }
   h1 { font-size:clamp(28px,5vw,46px); line-height:1.12; letter-spacing:-.02em; margin-bottom:16px; }
-  h1 .hl { background:linear-gradient(135deg, #2bb673, #31cec4); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  h1 .hl { background:linear-gradient(135deg, #3b82f6, #5e58f7); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
   .sub { color:var(--muted); font-size:clamp(16px,2.4vw,20px); max-width:620px; margin:0 auto 30px; }
   section { padding:40px 0; }
   .card { background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:30px; }
@@ -42,7 +42,7 @@
   .pain li:before { content:"😖"; position:absolute; left:0; top:11px; }
   .benefits { list-style:none; display:grid; gap:12px; }
   .benefits li { display:flex; gap:12px; align-items:flex-start; }
-  .chk { color:#fff; background:linear-gradient(135deg, #2bb673, #31cec4); min-width:24px; height:24px; border-radius:50%; display:inline-flex;
+  .chk { color:#fff; background:linear-gradient(135deg, #3b82f6, #5e58f7); min-width:24px; height:24px; border-radius:50%; display:inline-flex;
     align-items:center; justify-content:center; font-size:13px; font-weight:800; }
   .shots { display:flex; gap:16px; overflow-x:auto; padding:6px 0 14px; scroll-snap-type:x mandatory; }
   .shot { width:300px; flex:0 0 auto; border-radius:14px; border:1px solid var(--line); scroll-snap-align:center; }
@@ -65,21 +65,21 @@
 <body>
 <header><div class="wrap">
   <div class="badge">🧩</div>
-  <h1>Copy-paste data all day. There's a better way.</h1>
-  <p class="sub">Manually copying tables and lists from websites wastes hours you could spend actually using the data.</p>
+  <h1>Incumbent bundles jQuery + Angular runtime (~12 MB), slowing pages</h1>
+  <p class="sub">One-click scrape any table or list to CSV/Excel — local, instant, no account, no cloud, no trackers.</p>
   <a class="cta" href="https://chromewebstore.google.com/detail/pfmhdmkfgamjnmfgbcllpllcjbgjfakc" rel="noopener">Add to Chrome <span class="free">— Free</span></a>
 </div></header>
 
 
 
 <section><div class="wrap">
-  <h2>One click. Clean spreadsheet. Done.</h2>
+  <h2>Scrape any table or list to CSV in one click — private, local, instant.</h2>
   <ul class="benefits">
-        <li><span class="chk">✓</span>Extract any table or list to clean CSV or Excel in one click</li>
-        <li><span class="chk">✓</span>No row limits — grab the full dataset, not a truncated preview</li>
-        <li><span class="chk">✓</span>Works entirely in your browser — no account, no cloud, no data leaving your machine</li>
-        <li><span class="chk">✓</span>Opens directly in Excel or Google Sheets with columns already aligned</li>
-        <li><span class="chk">✓</span>Free, with no usage meters ticking in the background</li>
+        <li><span class="chk">✓</span>Vanilla-JS extractor under 300 KB — no framework bloat</li>
+        <li><span class="chk">✓</span>Zero telemetry — no outbound network calls ever</li>
+        <li><span class="chk">✓</span>CSV/XLSX generated client-side via download API — no account, no upload</li>
+        <li><span class="chk">✓</span>MutationObserver auto-tracks new rows on SPAs and infinite-scroll pages</li>
+        <li><span class="chk">✓</span>Minimal permissions: activeTab, scripting, downloads only</li>
   </ul>
 </div></section>
 
@@ -93,23 +93,25 @@
 
 <section><div class="wrap">
   <h2>Questions</h2>
-      <details class="faq"><summary>Does it work on any website?</summary><p>It works on any page with standard HTML tables or structured lists. Pages that load data dynamically via JavaScript may require scrolling to load content first.</p></details>
-      <details class="faq"><summary>Is there really no row limit?</summary><p>Correct — there is no cap imposed by the extension. The only limit is what your browser can load on the page and what Excel or your spreadsheet app can handle.</p></details>
-      <details class="faq"><summary>Do I need to create an account?</summary><p>No account, no sign-up, no email required. Install and use immediately.</p></details>
+      <details class="faq"><summary>Does it work on dynamic/SPA pages?</summary><p>Yes — MutationObserver tracks newly added rows automatically; just re-open the popup after scrolling.</p></details>
+      <details class="faq"><summary>Is my data sent anywhere?</summary><p>No. Everything is processed locally and exported directly to your device. Zero network calls.</p></details>
+      <details class="faq"><summary>Do I need an account?</summary><p>No account required. Free for the first 10 extractions.</p></details>
+      <details class="faq"><summary>What file formats are supported?</summary><p>CSV and XLSX — both generated fully client-side.</p></details>
+      <details class="faq"><summary>Why does it ask for scripting permission?</summary><p>To read the DOM of the tab you are actively viewing — no background access, no other sites.</p></details>
 </div></section>
 
 <section><div class="wrap">
   <h2>More free tools from BenettiMedia</h2>
   <div class="grid">
-    <a class="card" href="../auto-refresh/" style="--a:#16a34a;--b:#1abe9b"><div class="ic">🧩</div><div class="t">Auto Refresh Plus</div></a>
+    <a class="card" href="../auto-refresh/" style="--a:#3b82f6;--b:#5e58f7"><div class="ic">🧩</div><div class="t">Auto Refresh</div></a>
     <a class="card" href="../dark-mode/" style="--a:#6d28d9;--b:#bf42de"><div class="ic">🧩</div><div class="t">Dark Mode Deluxe</div></a>
-    <a class="card" href="../screen-recorder/" style="--a:#e23b3b;--b:#e69256"><div class="ic">🧩</div><div class="t">Snappy Screen Recorder</div></a>
-    <a class="card" href="../volume-booster/" style="--a:#3b82f6;--b:#5e58f7"><div class="ic">🧩</div><div class="t">Big Volume Booster</div></a>
+    <a class="card" href="../easy-auto-refresh/" style="--a:#3b82f6;--b:#5e58f7"><div class="ic">🧩</div><div class="t">Easy Auto Refresh</div></a>
+    <a class="card" href="../online-security/" style="--a:#3b82f6;--b:#5e58f7"><div class="ic">🧩</div><div class="t">PhishGuard</div></a>
   </div>
 </div></section>
 
 <footer><div class="wrap">
-  Web Scraper — Data Scraper to CSV/Excel · <a href="https://chromewebstore.google.com/detail/pfmhdmkfgamjnmfgbcllpllcjbgjfakc" rel="noopener">Get it on the Chrome Web Store</a>
+  Table &amp; List Scraper — Export CSV Instantly · <a href="https://chromewebstore.google.com/detail/pfmhdmkfgamjnmfgbcllpllcjbgjfakc" rel="noopener">Get it on the Chrome Web Store</a>
 </div></footer>
 </body>
 </html>
