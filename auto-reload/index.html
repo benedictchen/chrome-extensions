@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Auto Refresh / Auto Reload Page Timer — no install</title>
+<meta name="description" content="Auto-refresh any web page on a timer, free, right in your browser. Drag the bookmarklet, set an interval, keep dashboards, auctions, and feeds live. No sign-up.">
+
+<meta property="og:title" content="Free Auto Refresh — Auto Reload Page Timer">
+<meta property="og:description" content="Auto-reload any page on a timer. Free bookmarklet, no install.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Free Auto Refresh / Auto Reload Page Timer","applicationCategory":"BrowserApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+ :root{--accent:#16a34a}
+ *{box-sizing:border-box}
+ body{font:16px/1.5 -apple-system,system-ui,sans-serif;margin:0;color:#1a1a1a;background:#fafafa}
+ .wrap{max-width:680px;margin:0 auto;padding:32px 20px}
+ h1{font-size:28px;margin:0 0 8px}
+ .sub{color:#555;margin:0 0 24px}
+ .card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:20px;margin:16px 0}
+ label{display:block;font-weight:600;margin-bottom:6px}
+ input{font:inherit;padding:8px 10px;border:1px solid #ccc;border-radius:8px;width:120px}
+ .bm{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:10px 16px;border-radius:8px;margin-top:10px;cursor:grab}
+ .hint{color:#777;font-size:14px;margin-top:8px}
+ .cta{display:block;text-align:center;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:14px;border-radius:10px;margin-top:8px}
+ .why li{margin:4px 0}
+ footer{color:#999;font-size:13px;text-align:center;margin-top:28px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🔄 Free Auto Refresh — Auto Reload Page Timer</h1>
+  <p class="sub">Keep dashboards, auctions, status pages, and feeds live. No install, no sign-up — drag one bookmarklet.</p>
+
+  <div class="card">
+    <label for="sec">Reload every (seconds)</label>
+    <input id="sec" type="number" min="1" value="30">
+    <div><a class="bm" id="bm" href="javascript:(function(){var s=prompt('Auto-reload every how many seconds?','30');s=parseInt(s,10);if(!s||s<1)return;if(window.__arTimer)clearInterval(window.__arTimer);window.__arTimer=setInterval(function(){location.reload()},s*1000);alert('Auto-reloading every '+s+'s. Close the tab or run again with 0 to stop.')})()" title="Drag me to your bookmarks bar">🔄 Auto-Reload 30s — drag to bookmarks</a></div>
+    <p class="hint">Drag the button to your bookmarks bar. Click it on any page → it asks for the interval → that page auto-reloads. Re-run and enter 0 to stop, or just close the tab.</p>
+  </div>
+
+  <div class="card why">
+    <strong>Want it without a bookmarklet, on every tab, surviving reloads?</strong>
+    <ul>
+      <li>✅ Real on/off UI in the toolbar — no prompt each time</li>
+      <li>✅ Per-tab intervals, remembered across reloads</li>
+      <li>✅ Set it once, works on dashboards/auctions/feeds automatically</li>
+    </ul>
+    <a class="cta" href="https://chromewebstore.google.com/detail/jklpobdkabihgfpcnoijedieihdcpbeo" target="_blank" rel="noopener">Get the Auto Refresh Plus extension →</a>
+  </div>
+
+  <footer>Free tool by BenettiMedia · the bookmarklet runs entirely in your browser · no data leaves your device.</footer>
+</div>
+<script>
+ // keep the bookmarklet label + interval in sync with the input (live, real)
+ var sec=document.getElementById('sec'), bm=document.getElementById('bm');
+ var base="javascript:(function(){var s=SECs;if(!s||s<1)return;if(window.__arTimer)clearInterval(window.__arTimer);window.__arTimer=setInterval(function(){location.reload()},s*1000);alert('Auto-reloading every '+s+'s. Re-run with 0 to stop.')})()";
+ function sync(){var s=parseInt(sec.value,10)||30;bm.setAttribute('href',base.replace('SECs',String(s)));bm.textContent='🔄 Auto-Reload '+s+'s — drag to bookmarks';}
+ sec.addEventListener('input',sync); sync();
+</script>
+</body>
+</html>

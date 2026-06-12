@@ -4,26 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Web Scraper — Data Scraper to CSV/Excel</title>
-<meta name="description" content="Stop copy-pasting tables into a spreadsheet row by row. Click once → the page's table or list exports to clean CSV or JSON.">
+<meta name="description" content="Copy-paste data all day. There's a better way. One click. Clean spreadsheet. Done.">
 <link rel="canonical" href="https://chromewebstore.google.com/detail/pfmhdmkfgamjnmfgbcllpllcjbgjfakc">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Web Scraper — Data Scraper to CSV/Excel">
-<meta property="og:description" content="Stop copy-pasting tables into a spreadsheet row by row. Click once → the page's table or list exports to clean CSV or JSON.">
-<meta property="og:image" content="cws-1.png">
+<meta property="og:description" content="Copy-paste data all day. There's a better way. One click. Clean spreadsheet. Done.">
+
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Web Scraper — Data Scraper to CSV/Excel">
-<meta name="twitter:description" content="Stop copy-pasting tables into a spreadsheet row by row. Click once → the page's table or list exports to clean CSV or JSON.">
-<meta name="twitter:image" content="cws-1.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Where does my scraped data go?","acceptedAnswer":{"@type":"Answer","text":"Nowhere but your device. Extraction runs locally in your browser and the file saves directly to you."}},{"@type":"Question","name":"What formats can I export?","acceptedAnswer":{"@type":"Answer","text":"Clean CSV (for Excel/Sheets) or JSON."}},{"@type":"Question","name":"Do I need an account?","acceptedAnswer":{"@type":"Answer","text":"No. Free for your first exports; unlimited is a low monthly subscription, cancel anytime."}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Web Scraper — Data Scraper to CSV/Excel","applicationCategory":"BrowserApplication","operatingSystem":"Chrome","url":"https://chromewebstore.google.com/detail/pfmhdmkfgamjnmfgbcllpllcjbgjfakc","sameAs":"https://chromewebstore.google.com/detail/pfmhdmkfgamjnmfgbcllpllcjbgjfakc","description":"Stop copy-pasting tables into a spreadsheet row by row. Click once → the page's table or list exports to clean CSV or JSON.","offers":{"@type":"Offer","price":"9.67","priceCurrency":"USD"}}</script>
+<meta name="twitter:description" content="Copy-paste data all day. There's a better way. One click. Clean spreadsheet. Done.">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does it work on any website?","acceptedAnswer":{"@type":"Answer","text":"It works on any page with standard HTML tables or structured lists. Pages that load data dynamically via JavaScript may require scrolling to load content first."}},{"@type":"Question","name":"Is there really no row limit?","acceptedAnswer":{"@type":"Answer","text":"Correct — there is no cap imposed by the extension. The only limit is what your browser can load on the page and what Excel or your spreadsheet app can handle."}},{"@type":"Question","name":"Do I need to create an account?","acceptedAnswer":{"@type":"Answer","text":"No account, no sign-up, no email required. Install and use immediately."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Web Scraper — Data Scraper to CSV/Excel","applicationCategory":"BrowserApplication","operatingSystem":"Chrome","url":"https://chromewebstore.google.com/detail/pfmhdmkfgamjnmfgbcllpllcjbgjfakc","sameAs":"https://chromewebstore.google.com/detail/pfmhdmkfgamjnmfgbcllpllcjbgjfakc","description":"Copy-paste data all day. There's a better way. One click. Clean spreadsheet. Done.","offers":{"@type":"Offer","price":"9.67","priceCurrency":"USD"}}</script>
 <style>
-  :root { --accent:#059669; --accent2:#10b981; --glow:#10b981;
+  :root { --accent:#2bb673; --accent2:#31cec4; --glow:#31cec4;
     --bg:#0b0b10; --surface:#15151d; --line:#262630; --text:#f4f4f6; --muted:#a0a0ad; }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
   .wrap { max-width:880px; margin:0 auto; padding:0 22px; }
   a { color:inherit; }
-  .cta { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg, #059669, #10b981); color:#fff; font-weight:800;
+  .cta { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg, #2bb673, #31cec4); color:#fff; font-weight:800;
     font-size:18px; padding:15px 30px; border-radius:14px; text-decoration:none; box-shadow:0 10px 34px -8px var(--glow);
     transition:transform .12s ease; }
   .cta:hover { transform:translateY(-2px); }
@@ -32,7 +32,7 @@
   .badge { display:inline-block; font-size:34px; width:74px; height:74px; line-height:74px; border-radius:20px;
     background:var(--surface); border:1px solid var(--line); margin-bottom:22px; box-shadow:0 0 40px -16px var(--glow); }
   h1 { font-size:clamp(28px,5vw,46px); line-height:1.12; letter-spacing:-.02em; margin-bottom:16px; }
-  h1 .hl { background:linear-gradient(135deg, #059669, #10b981); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  h1 .hl { background:linear-gradient(135deg, #2bb673, #31cec4); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
   .sub { color:var(--muted); font-size:clamp(16px,2.4vw,20px); max-width:620px; margin:0 auto 30px; }
   section { padding:40px 0; }
   .card { background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:30px; }
@@ -42,7 +42,7 @@
   .pain li:before { content:"😖"; position:absolute; left:0; top:11px; }
   .benefits { list-style:none; display:grid; gap:12px; }
   .benefits li { display:flex; gap:12px; align-items:flex-start; }
-  .chk { color:#fff; background:linear-gradient(135deg, #059669, #10b981); min-width:24px; height:24px; border-radius:50%; display:inline-flex;
+  .chk { color:#fff; background:linear-gradient(135deg, #2bb673, #31cec4); min-width:24px; height:24px; border-radius:50%; display:inline-flex;
     align-items:center; justify-content:center; font-size:13px; font-weight:800; }
   .shots { display:flex; gap:16px; overflow-x:auto; padding:6px 0 14px; scroll-snap-type:x mandatory; }
   .shot { width:300px; flex:0 0 auto; border-radius:14px; border:1px solid var(--line); scroll-snap-align:center; }
@@ -64,34 +64,26 @@
 </head>
 <body>
 <header><div class="wrap">
-  <div class="badge">🧲</div>
-  <h1>Stop copy-pasting tables into a spreadsheet row by row.</h1>
-  <p class="sub">You found the data on the page. Now you are dragging-selecting cells, pasting into Excel, and fixing the columns by hand — again. There is a one-click way.</p>
+  <div class="badge">🧩</div>
+  <h1>Copy-paste data all day. There's a better way.</h1>
+  <p class="sub">Manually copying tables and lists from websites wastes hours you could spend actually using the data.</p>
   <a class="cta" href="https://chromewebstore.google.com/detail/pfmhdmkfgamjnmfgbcllpllcjbgjfakc" rel="noopener">Add to Chrome <span class="free">— Free</span></a>
 </div></header>
 
-<section style="padding-top:8px"><div class="wrap">
-  <video class="demo" src="demo.mp4" autoplay muted loop playsinline poster="cws-1.png"></video>
-</div></section>
+
 
 <section><div class="wrap">
-  <h2>Click once → the page's table or list exports to clean CSV or JSON.</h2>
+  <h2>One click. Clean spreadsheet. Done.</h2>
   <ul class="benefits">
-        <li><span class="chk">✓</span>Extracts the visible table or list on the page you are viewing.</li>
-        <li><span class="chk">✓</span>Saves clean CSV or JSON straight to your device.</li>
-        <li><span class="chk">✓</span>Runs entirely in your browser — your data is never sent to us.</li>
-        <li><span class="chk">✓</span>No account, no email wall, no code.</li>
+        <li><span class="chk">✓</span>Extract any table or list to clean CSV or Excel in one click</li>
+        <li><span class="chk">✓</span>No row limits — grab the full dataset, not a truncated preview</li>
+        <li><span class="chk">✓</span>Works entirely in your browser — no account, no cloud, no data leaving your machine</li>
+        <li><span class="chk">✓</span>Opens directly in Excel or Google Sheets with columns already aligned</li>
+        <li><span class="chk">✓</span>Free, with no usage meters ticking in the background</li>
   </ul>
 </div></section>
 
-<section><div class="wrap">
-  <div class="shots">
-        <img class="shot" src="cws-1.png" alt="Web Scraper — Data Scraper to CSV/Excel screenshot" loading="lazy">
-        <img class="shot" src="cws-2.png" alt="Web Scraper — Data Scraper to CSV/Excel screenshot" loading="lazy">
-        <img class="shot" src="cws-3.png" alt="Web Scraper — Data Scraper to CSV/Excel screenshot" loading="lazy">
-        <img class="shot" src="popup.png" alt="Web Scraper — Data Scraper to CSV/Excel screenshot" loading="lazy">
-  </div>
-</div></section>
+
 
 <section><div class="wrap card price">
   <div class="big">Your first 10 uses are on us</div>
@@ -101,18 +93,18 @@
 
 <section><div class="wrap">
   <h2>Questions</h2>
-      <details class="faq"><summary>Where does my scraped data go?</summary><p>Nowhere but your device. Extraction runs locally in your browser and the file saves directly to you.</p></details>
-      <details class="faq"><summary>What formats can I export?</summary><p>Clean CSV (for Excel/Sheets) or JSON.</p></details>
-      <details class="faq"><summary>Do I need an account?</summary><p>No. Free for your first exports; unlimited is a low monthly subscription, cancel anytime.</p></details>
+      <details class="faq"><summary>Does it work on any website?</summary><p>It works on any page with standard HTML tables or structured lists. Pages that load data dynamically via JavaScript may require scrolling to load content first.</p></details>
+      <details class="faq"><summary>Is there really no row limit?</summary><p>Correct — there is no cap imposed by the extension. The only limit is what your browser can load on the page and what Excel or your spreadsheet app can handle.</p></details>
+      <details class="faq"><summary>Do I need to create an account?</summary><p>No account, no sign-up, no email required. Install and use immediately.</p></details>
 </div></section>
 
 <section><div class="wrap">
   <h2>More free tools from BenettiMedia</h2>
   <div class="grid">
-    <a class="card" href="../screen-recorder/" style="--a:#ef4444;--b:#f43f5e"><div class="ic">⏺</div><div class="t">Snappy Screen Recorder</div></a>
-    <a class="card" href="../volume-booster/" style="--a:#f59e0b;--b:#fb7185"><div class="ic">🔊</div><div class="t">Big Volume Booster</div></a>
-    <a class="card" href="../auto-refresh/" style="--a:#3b82f6;--b:#06b6d4"><div class="ic">🔄</div><div class="t">Auto Refresh Plus</div></a>
-    <a class="card" href="../dark-mode/" style="--a:#a855f7;--b:#6366f1"><div class="ic">🌙</div><div class="t">Dark Mode Deluxe</div></a>
+    <a class="card" href="../auto-refresh/" style="--a:#16a34a;--b:#1abe9b"><div class="ic">🧩</div><div class="t">Auto Refresh Plus</div></a>
+    <a class="card" href="../dark-mode/" style="--a:#6d28d9;--b:#bf42de"><div class="ic">🧩</div><div class="t">Dark Mode Deluxe</div></a>
+    <a class="card" href="../screen-recorder/" style="--a:#e23b3b;--b:#e69256"><div class="ic">🧩</div><div class="t">Snappy Screen Recorder</div></a>
+    <a class="card" href="../volume-booster/" style="--a:#3b82f6;--b:#5e58f7"><div class="ic">🧩</div><div class="t">Big Volume Booster</div></a>
   </div>
 </div></section>
 

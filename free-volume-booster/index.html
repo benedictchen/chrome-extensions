@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Volume Booster — make audio louder up to 600%, no install</title>
+<meta name="description" content="Boost any audio or video file up to 600% louder, free, right in your browser. Real Web Audio gain — no sign-up. Want it on every tab? get the extension.">
+
+<meta property="og:title" content="Free Volume Booster — up to 600% louder">
+<meta property="og:description" content="Boost an audio/video file up to 600% in your browser. Free, no install.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Free Volume Booster","applicationCategory":"BrowserApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+ :root{--accent:#3b82f6}
+ *{box-sizing:border-box}
+ body{font:16px/1.5 -apple-system,system-ui,sans-serif;margin:0;color:#1a1a1a;background:#fafafa}
+ .wrap{max-width:680px;margin:0 auto;padding:32px 20px}
+ h1{font-size:28px;margin:0 0 8px}
+ .sub{color:#555;margin:0 0 24px}
+ .card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:20px;margin:16px 0}
+ input[type=file]{font:inherit}
+ input[type=range]{width:100%}
+ .val{font-weight:700;color:var(--accent);font-size:20px}
+ audio{width:100%;margin-top:12px}
+ .cta{display:block;text-align:center;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:14px;border-radius:10px;margin-top:8px}
+ .why li{margin:4px 0}
+ .hint{color:#777;font-size:14px;margin-top:8px}
+ footer{color:#999;font-size:13px;text-align:center;margin-top:28px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🔊 Free Volume Booster — up to 600% louder</h1>
+  <p class="sub">Pick an audio or video file and crank it past 100%. Real Web Audio gain, in your browser. No install, no sign-up.</p>
+
+  <div class="card">
+    <input id="file" type="file" accept="audio/*,video/*">
+    <audio id="player" controls></audio>
+    <p style="margin:14px 0 4px">Boost: <span class="val" id="val">100%</span></p>
+    <input id="gain" type="range" min="0" max="600" value="100" step="10">
+    <p class="hint">Loads entirely in your browser — the file never leaves your device. Pick a file, press play, drag the slider past 100%.</p>
+  </div>
+
+  <div class="card why">
+    <strong>Want to boost any TAB — YouTube, Meet, any site — not just a file?</strong>
+    <ul>
+      <li>✅ Boost the audio of ANY browser tab up to 600%</li>
+      <li>✅ Per-tab slider, remembers your level</li>
+      <li>✅ Works on streaming video, calls, music — nothing to upload</li>
+    </ul>
+    <a class="cta" href="https://chromewebstore.google.com/detail/aepklhbjfgmjlnedafjidlindeedhgkb" target="_blank" rel="noopener">Get the Volume Booster extension →</a>
+  </div>
+
+  <footer>Free tool by BenettiMedia · Web Audio runs entirely in your browser · no upload, no data leaves your device.</footer>
+</div>
+<script>
+ // Real Web Audio gain chain: <audio> → MediaElementSource → GainNode → destination.
+ var fileEl=document.getElementById('file'), player=document.getElementById('player'),
+     gainEl=document.getElementById('gain'), valEl=document.getElementById('val');
+ var ctx, srcNode, gainNode;
+ function ensureChain(){
+   if(ctx) return;
+   ctx=new (window.AudioContext||window.webkitAudioContext)();
+   srcNode=ctx.createMediaElementSource(player);
+   gainNode=ctx.createGain();
+   srcNode.connect(gainNode); gainNode.connect(ctx.destination);
+   setGain();
+ }
+ function setGain(){ var p=parseInt(gainEl.value,10); valEl.textContent=p+'%'; if(gainNode) gainNode.gain.value=p/100; }
+ fileEl.addEventListener('change',function(){ if(fileEl.files[0]){ player.src=URL.createObjectURL(fileEl.files[0]); } });
+ player.addEventListener('play',function(){ ensureChain(); if(ctx.state==='suspended') ctx.resume(); });
+ gainEl.addEventListener('input',setGain);
+ setGain();
+</script>
+</body>
+</html>

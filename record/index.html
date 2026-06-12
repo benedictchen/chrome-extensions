@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Online Screen Recorder — record your screen, no install</title>
+<meta name="description" content="Record your screen, window, or tab right in the browser. No sign-up, no extension, no watermark. Download a WebM video instantly.">
+
+<meta property="og:title" content="Free Online Screen Recorder">
+<meta property="og:description" content="Record your screen in the browser. No install, no sign-up. Instant download.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Free Online Screen Recorder","applicationCategory":"MultimediaApplication","operatingSystem":"Any (modern browser)","browserRequirements":"Requires getDisplayMedia (Chrome, Edge, Firefox)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<style>
+  :root { --accent:#e23b3b; --bg:#0b0b10; --surface:#15151d; --line:#262630; --text:#f4f4f6; --muted:#a0a0ad; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; min-height:100vh; }
+  .wrap { max-width:760px; margin:0 auto; padding:48px 22px 80px; }
+  h1 { font-size:30px; letter-spacing:-.02em; }
+  p.sub { color:var(--muted); margin:10px 0 28px; }
+  .card { background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:26px; }
+  button { font:inherit; font-weight:700; border:0; border-radius:12px; padding:13px 22px; cursor:pointer; color:#fff; background:var(--accent); }
+  button:disabled { opacity:.4; cursor:not-allowed; }
+  button.stop { background:#dc2626; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin:6px 0 18px; }
+  label { color:var(--muted); font-size:14px; display:flex; gap:7px; align-items:center; }
+  #status { font-size:14px; color:var(--muted); min-height:20px; }
+  video { width:100%; border-radius:12px; margin-top:18px; background:#000; display:none; }
+  a.dl, a.cta { display:inline-block; margin-top:14px; color:var(--accent); font-weight:700; text-decoration:none; }
+  .upsell { margin-top:34px; padding:20px; border:1px dashed var(--line); border-radius:14px; color:var(--muted); font-size:15px; }
+  .upsell a { color:var(--accent); font-weight:700; }
+  .err { color:#f87171; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Free Online Screen Recorder</h1>
+  <p class="sub">Record your screen, a window, or a tab — right in your browser. No install, no sign-up, no watermark. Your video never leaves your device.</p>
+  <div class="card">
+    <div class="row">
+      <label><input type="checkbox" id="mic"> Include microphone</label>
+    </div>
+    <div class="row">
+      <button id="start">● Start recording</button>
+      <button id="stop" class="stop" disabled>■ Stop</button>
+    </div>
+    <div id="status">Ready. Click “Start recording”, then pick a screen, window, or tab.</div>
+    <video id="preview" controls></video>
+    <div id="out"></div>
+  </div>
+  <div class="upsell">
+    Want it always-ready with one click — no tab to keep open, record on a hotkey, auto-save?
+    <a href="https://chromewebstore.google.com/detail/fofbagleicmaejjeliklkfdalhhbfcop" target="_blank" rel="noopener">Get the Screen Recorder Chrome extension →</a>
+    <div style="margin-top:12px;font-size:14px"><a href="../" style="color:var(--accent);font-weight:700">← more free browser tools &amp; extensions</a></div>
+  </div>
+</div>
+<script>
+(function () {
+  var startBtn = document.getElementById('start');
+  var stopBtn = document.getElementById('stop');
+  var statusEl = document.getElementById('status');
+  var micEl = document.getElementById('mic');
+  var preview = document.getElementById('preview');
+  var out = document.getElementById('out');
+  var rec = null, chunks = [], stream = null;
+
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia || typeof MediaRecorder === 'undefined') {
+    statusEl.className = 'err';
+    statusEl.textContent = 'Your browser does not support in-page screen recording (needs getDisplayMedia + MediaRecorder). Use a recent Chrome, Edge, or Firefox.';
+    startBtn.disabled = true;
+    return;
+  }
+
+  function pickMime() {
+    var opts = ['video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm'];
+    for (var i = 0; i < opts.length; i++) { if (MediaRecorder.isTypeSupported(opts[i])) return opts[i]; }
+    return '';
+  }
+
+  startBtn.addEventListener('click', function () {
+    out.innerHTML = '';
+    preview.style.display = 'none';
+    chunks = [];
+    var want = { video: { frameRate: 30 }, audio: true };
+    navigator.mediaDevices.getDisplayMedia(want).then(function (displayStream) {
+      stream = displayStream;
+      // optionally mix in the microphone track
+      var startRec = function () {
+        var mime = pickMime();
+        rec = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+        rec.ondataavailable = function (ev) { if (ev.data && ev.data.size > 0) chunks.push(ev.data); };
+        rec.onstop = function () {
+          var blob = new Blob(chunks, { type: mime || 'video/webm' });
+          var url = URL.createObjectURL(blob);
+          preview.src = url; preview.style.display = 'block';
+          var ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+          out.innerHTML = '<a class="dl" download="recording-' + ts + '.webm" href="' + url + '">⬇ Download recording (.webm)</a>';
+          statusEl.textContent = 'Done. Preview above, or download.';
+        };
+        // stop cleanly if the user ends the share from the browser UI
+        stream.getVideoTracks()[0].addEventListener('ended', function () { if (rec && rec.state !== 'inactive') stopAll(); });
+        rec.start();
+        statusEl.textContent = 'Recording… click Stop (or “Stop sharing” in the browser bar) when finished.';
+        startBtn.disabled = true; stopBtn.disabled = false;
+      };
+      if (micEl.checked) {
+        navigator.mediaDevices.getUserMedia({ audio: true }).then(function (micStream) {
+          micStream.getAudioTracks().forEach(function (t) { stream.addTrack(t); });
+          startRec();
+        }).catch(function () { statusEl.textContent = 'Mic unavailable — recording screen audio only.'; startRec(); });
+      } else { startRec(); }
+    }).catch(function (err) {
+      statusEl.className = 'err';
+      statusEl.textContent = (err && err.name === 'NotAllowedError') ? 'Recording cancelled (no screen selected).' : 'Could not start: ' + (err && err.message || err);
+    });
+  });
+
+  function stopAll() {
+    if (rec && rec.state !== 'inactive') rec.stop();
+    if (stream) stream.getTracks().forEach(function (t) { t.stop(); });
+    startBtn.disabled = false; stopBtn.disabled = true;
+  }
+  stopBtn.addEventListener('click', stopAll);
+})();
+</script>
+</body>
+</html>
